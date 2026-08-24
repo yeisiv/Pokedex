@@ -1,0 +1,27 @@
+/*Colores para el fondo blanco*/
+:root {
+    --color-fondo-page: #F7F1E6;
+    --color-fondo-card: #FFFFFF;
+    --color-bordes: #E3D8C0;
+    --color-texto: #3B3221;
+    --color-acento: #C08A2E;
+}
+
+/* Este media se activa cuando el sistema del ordenador esta en oscuro
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-fondo-page: #211E1A;
+        --color-fondo-card: #2A2620;
+        --color-bordes: #3A352C;
+        --color-texto: #EDE9E0;
+        --color-acento: #D9A536;
+    }
+} */
+
+html.dark {/*Lo que se activa con el toggle de sol y luna*/
+    --color-fondo-page: #211E1A;
+    --color-fondo-card: #2A2620;
+    --color-bordes: #3A352C;
+    --color-texto: #EDE9E0;
+    --color-acento: #D9A536;
+}

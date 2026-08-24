@@ -1,0 +1,21 @@
+{
+  "normal":    { "bgDark": "#A8A695", "textDark": "#2A2820", "bgLight": "#817F6A", "textLight": "#13120E"},
+  "fuego":     { "bgDark": "#C77850", "textDark": "#2E140A", "bgLight": "#C0693D", "textLight": "#240F08"},
+  "agua":      { "bgDark": "#6E9AC4", "textDark": "#0C2438", "bgLight": "#4D83B7", "textLight": "#071521"},
+  "eléctrico": { "bgDark": "#C7B84E", "textDark": "#2E2A0A", "bgLight": "#8D812D", "textLight": "#171505"},
+  "planta":    { "bgDark": "#7DA25C", "textDark": "#152210", "bgLight": "#69884D", "textLight": "#0C1409"},
+  "hielo":     { "bgDark": "#7FB4B0", "textDark": "#0E2422", "bgLight": "#508883", "textLight": "#081514"},
+  "lucha":     { "bgDark": "#B5654F", "textDark": "#140804", "bgLight": "#B5654F", "textLight": "#140804"},
+  "veneno":    { "bgDark": "#9A6BA8", "textDark": "#120A16", "bgLight": "#9A6BA8", "textLight": "#120A16"},
+  "tierra":    { "bgDark": "#C6A876", "textDark": "#2E2210", "bgLight": "#9B7940", "textLight": "#171108"},
+  "volador":   { "bgDark": "#9088D4", "textDark": "#1A163A", "bgLight": "#7F75CD", "textLight": "#14112D"},
+  "psíquico":  { "bgDark": "#B87A9E", "textDark": "#2A1620", "bgLight": "#AF6992", "textLight": "#1E1017"},
+  "bicho":     { "bgDark": "#93A756", "textDark": "#1E2408", "bgLight": "#758545", "textLight": "#101304"},
+  "roca":      { "bgDark": "#B6A968", "textDark": "#2A2408", "bgLight": "#8A7E43", "textLight": "#121004"},
+  "fantasma":  { "bgDark": "#8C7BB5", "textDark": "#181030", "bgLight": "#8674B1", "textLight": "#140D28"},
+  "dragón":    { "bgDark": "#7A6ADB", "textDark": "#0D0A28", "bgLight": "#7A6ADB", "textLight": "#0A071E"},
+  "siniestro": { "bgDark": "#8A7A70", "textDark": "#17110E", "bgLight": "#8A7A70", "textLight": "#140F0C"},
+  "acero":     { "bgDark": "#A69E7A", "textDark": "#26220E", "bgLight": "#88805B", "textLight": "#171509"},
+  "hada":      { "bgDark": "#D391B0", "textDark": "#2E1622", "bgLight": "#BF5E8B", "textLight": "#1D0E15"}
+}
+

@@ -30,6 +30,46 @@ function crearCarta(pokemon, tiposPoke, tema){
     return cartaPokemon;
 }
 
+const templateRegion = document.getElementById('region-option-template');
+
+function crearRegion(region){
+    let opcionRegion = templateRegion.content.cloneNode(true);
+
+    let input = opcionRegion.querySelector('input');
+    let nombre = opcionRegion.querySelector('.region-nombre');
+
+    input.value = region.id;
+    nombre.textContent = region.nombre;
+
+    return opcionRegion;
+}
+
+const templateTipos = document.getElementById('tipo-option-template');
+
+function crearTipos(nombre, colores, tema){
+
+    let opcionTipo = templateTipos.content.cloneNode(true);
+
+    let input = opcionTipo.querySelector('input');
+    let nombreT = opcionTipo.querySelector('.tipo-nombre');
+    let label = opcionTipo.querySelector('.tipo-option');
+
+    input.value = nombre;
+    nombreT.textContent = ponerMayusculaPrimeraLetra(nombre);
+
+    let bg = tema === 'dark' ? colores.bgDark : colores.bgLight;
+    let text = tema === 'dark' ? colores.textDark : colores.textLight;
+
+    label.style.setProperty('--chip-bg',bg);
+    label.style.setProperty('--chip-text',text);
+
+    return opcionTipo;
+}
+
+function ponerMayusculaPrimeraLetra(palabra){
+    return palabra.charAt(0).toUpperCase() + palabra.slice(1);
+}
+
 export function renderGrid(listaPokemon, tiposPoke, tema){
     let grid = document.querySelector('.grid');
     grid.innerHTML='';
@@ -38,4 +78,20 @@ export function renderGrid(listaPokemon, tiposPoke, tema){
         const carta = crearCarta(pokemon, tiposPoke, tema);
         grid.appendChild(carta);
     });
+}
+
+export function panelRegiones(regiones){
+    let panelRegion = document.querySelector('.region-opciones');
+    regiones.forEach(region=>{
+        const area = crearRegion (region);
+        panelRegion.appendChild(area);
+    })
+}
+
+export function panelTipos(tiposPoke, tema){
+    let panelTipo = document.querySelector('.tipo-opciones');
+    Object.entries(tiposPoke).forEach(([nombreTipo, colores]) =>{
+        const opcion = crearTipos(nombreTipo, colores, tema);
+        panelTipo.appendChild(opcion);
+    })
 }

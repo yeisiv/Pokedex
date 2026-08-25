@@ -18,6 +18,8 @@ header{
     align-items: center;
 }
 
+/*Botones y paneles*/
+
 .controls{
    margin-top: 0.5rem;
     display: flex;
@@ -31,12 +33,13 @@ header{
     background: none;
 }
 
+
+/*Tarjetas*/
 .grid{
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0.5rem;
-    margin: 0 auto;
-    padding: 0.5rem 0;
+    padding: 0.5rem;
 }
 
 .card{

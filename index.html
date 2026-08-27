@@ -1,35 +1,59 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>InfinityDex</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
     <header>
         <img src="assets/" alt="Logo Pokedex">
         <h1>InfinityDex</h1>
     </header>
 
-    <hr>
-
     <div class="controls">
         <button class="icon-btn" aria-label="Búsqueda" aria-expanded="false" aria-controls="panel-busqueda">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search-icon lucide-search"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-search-icon lucide-search">
+                <path d="m21 21-4.34-4.34" />
+                <circle cx="11" cy="11" r="8" />
+            </svg>
         </button>
         <button class="icon-btn" aria-label="Filtro por región" aria-expanded="false" aria-controls="panel-regiones">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-globe-icon lucide-globe"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-globe-icon lucide-globe">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+                <path d="M2 12h20" />
+            </svg>
         </button>
         <button class="icon-btn" aria-label="Filtro de tipos" aria-expanded="false" aria-controls="panel-tipo">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-icon lucide-circle"><circle cx="12" cy="12" r="10"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-circle-icon lucide-circle">
+                <circle cx="12" cy="12" r="10" />
+            </svg>
         </button>
 
+    </div>
+
+    <div class="paneles">
         <div id="panel-busqueda" class="panel" hidden>
             <label for="search-input" class="sr-only">Buscar Pokemon por nombre</label>
             <div class="campo-busqueda">
                 <input type="search" id="search-input" name="search" placeholder="Buscar Pokemon..." autocomplete="off">
-                <button id="btn-limpiar" type="button" aria-label="Limpiar búsqueda" hidden><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x-icon lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+                <button id="btn-limpiar" type="button" aria-label="Limpiar búsqueda" hidden><svg
+                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-x-icon lucide-x">
+                        <path d="M18 6 6 18" />
+                        <path d="m6 6 12 12" />
+                    </svg></button>
             </div>
         </div>
 
@@ -41,15 +65,12 @@
         </div>
 
         <div id="panel-tipo" class="panel" hidden>
-             <fieldset>
-                <legend class="sr-only">Filtrar por tipo</legend>
+            <fieldset>
+                <legend class="sr-only">Filtrar por región</legend>
                 <div class="tipo-opciones"></div>
             </fieldset>
         </div>
-        
     </div>
-
-    <hr>
 
     <main>
         <div class="grid">
@@ -63,14 +84,14 @@
 
     <template id="region-option-template">
         <label class="region-option">
-            <input type="radio" name="region">
+            <input type="radio" name="region" class="sr-only">
             <span class="region-nombre"></span>
         </label>
     </template>
 
     <template id="tipo-option-template">
         <label class="tipo-option">
-            <input type="checkbox" name="tipo">
+            <input type="checkbox" name="tipo" class="sr-only">
             <span class="tipo-nombre"></span>
         </label>
     </template>
@@ -87,4 +108,5 @@
     <footer></footer>
     <script type="module" src="src/js/app.js"></script>
 </body>
+
 </html>

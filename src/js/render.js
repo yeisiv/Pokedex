@@ -66,7 +66,7 @@ function crearTipos(nombre, colores, tema){
     return opcionTipo;
 }
 
-function ponerMayusculaPrimeraLetra(palabra){
+export function ponerMayusculaPrimeraLetra(palabra){
     return palabra.charAt(0).toUpperCase() + palabra.slice(1);
 }
 

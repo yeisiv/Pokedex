@@ -23,7 +23,7 @@ async function iniciar(){
 
     panelTipos(tiposColours, tema);
 
-    initFiltros();
+    initFiltros(pokemons, tiposColours, tema);
 }
 
 iniciar();

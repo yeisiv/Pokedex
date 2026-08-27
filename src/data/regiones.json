@@ -4,8 +4,8 @@
     {"id": "hoenn", "nombre": "Hoenn", "rango": [252, 386]},
     {"id": "sinnoh", "nombre": "Sinnoh", "rango": [387, 493]},
     {"id": "teselia", "nombre": "Teselia", "rango": [494, 649]},
-    {"id": "kalos", "nombre": "kalos", "rango": [650, 721]},
+    {"id": "kalos", "nombre": "Kalos", "rango": [650, 721]},
     {"id": "alola", "nombre": "Alola", "rango": [722, 809]},
     {"id": "galar", "nombre": "Galar", "rango": [810, 905]},
     {"id": "paldea", "nombre": "Paldea", "rango": [906, 1025]}
-]
+] 

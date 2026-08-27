@@ -1349,7 +1349,8 @@
       "Hielo",
       "Psíquico"
     ],
-    "formaRegional": true
+    "formaRegional": true,
+    "idSprite": 10168
   },
   {
     "numero": 123,

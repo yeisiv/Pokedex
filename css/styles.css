@@ -1,16 +1,26 @@
 @import url(variables.css);
 
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body{
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    margin: -1px;
+}
+
+body {
     background-color: var(--color-fondo-page);
 }
 
-header{
+header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -20,29 +30,55 @@ header{
 
 /*Botones y paneles*/
 
-.controls{
-   margin-top: 0.5rem;
+.controls {
+    margin-top: 0.5rem;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
 }
 
-.controls button{
+.controls button {
     cursor: pointer;
     border: none;
     background: none;
 }
 
+.paneles {
+    display: flex;
+    justify-content: center;
+    max-width: 480px;
+    margin: auto;
+    padding: 0.4rem;
+}
+
+#panel-busqueda input {
+    width: 100%;
+}
+
+.tipo-opciones{
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0.5rem;
+    padding: 0.5rem;
+}
+
+.tipo-option span {
+    padding: 0.1rem;
+    background-color: var(--chip-bg);
+    color: var(--chip-text);
+    border-radius: 0.2rem;
+}
+
 
 /*Tarjetas*/
-.grid{
+.grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0.5rem;
     padding: 0.5rem;
 }
 
-.card{
+.card {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -52,12 +88,12 @@ header{
     gap: 2px;
 }
 
-.card__tipos{
+.card__tipos {
     display: flex;
     gap: 0.5rem;
 }
 
-.card__tipos span{
+.card__tipos span {
     padding: 0.2rem;
     border-radius: 4px;
 }

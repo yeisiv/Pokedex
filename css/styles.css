@@ -59,6 +59,44 @@ header {
     width: 100%;
 }
 
+.tipo-cabecera{
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 0.5rem 0.5rem 0;
+    color: var(--color-texto);
+    line-height: 1;
+}
+
+.tipo-aviso{
+    min-height: calc(2 * 0.5em);
+}
+
+@keyframes sacudida {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-4px); }
+    40% { transform: translateX(4px); }
+    60% { transform: translateX(-3px); }
+    80% { transform: translateX(2px); }
+}
+
+@keyframes parpadeo {
+    0%, 100% { opacity: 1; }
+    50% {opacity: 0.5 }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .tipo-rechazado {
+        animation: sacudida 300ms;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .tipo-rechazado {
+        animation: parpadeo 400ms;
+    }
+}
+
 .tipo-opciones{
     display: grid;
     grid-template-columns: repeat(6, 1fr);
@@ -100,4 +138,10 @@ header {
 .card__tipos span {
     padding: 0.2rem;
     border-radius: 4px;
+}
+
+@media (min-width: 480px) {
+    .tipo-aviso {
+        min-height: 1.3em;
+    }
 }

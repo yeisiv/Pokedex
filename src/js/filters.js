@@ -3,6 +3,8 @@ import { renderGrid, ponerMayusculaPrimeraLetra } from "./render.js";
 const botonesControl = document.querySelectorAll('.icon-btn');
 const todosPaneles = document.querySelectorAll('.panel');
 
+const MAX_TIPOS = 2;
+
 function abrirPanel(btn, panel) {
 
     if (!panel.hidden) {
@@ -68,19 +70,50 @@ export function initFiltros(listaPoke, tiposPoke, tema) {
     });
 
     const filtroTipos = document.querySelector('.tipo-opciones');
+    
+    const contadorTipos = document.querySelector('.tipo-contador');
+
+    const avisoTipos = document.querySelector('.tipo-aviso');
+    let temporizadorAviso;
+
+    function actualizarContador() {
+        contadorTipos.textContent = "Tipos seleccionados: " + filtroActivo.tipos.length + "/" + MAX_TIPOS;
+        ocultarAvisoTipos();
+    }
+
+    function ocultarAvisoTipos() {
+        if (filtroActivo.tipos.length < MAX_TIPOS)  {
+            clearTimeout(temporizadorAviso);
+            avisoTipos.textContent = '';
+        }
+    }
 
     filtroTipos.addEventListener('change', (event) => {
         const seleccionados = Array.from(filtroTipos.querySelectorAll('input:checked'));
         console.log(seleccionados);
-        if (seleccionados.length > 2) {
+        if (seleccionados.length > MAX_TIPOS) {
             event.target.checked = false;
+
+            const etiqueta = event.target.closest('.tipo-option');
+            etiqueta.classList.add('tipo-rechazado');
+            etiqueta.addEventListener('animationend', () => {
+                etiqueta.classList.remove('tipo-rechazado');
+            }, { once: true });
+
+            clearTimeout(temporizadorAviso);
+            avisoTipos.textContent = '';
+            temporizadorAviso = setTimeout(() => {
+                avisoTipos.textContent = "Máximo " + MAX_TIPOS + " tipos. Quita uno para elegir otro.";
+                temporizadorAviso = setTimeout(() => {
+                    avisoTipos.textContent = '';
+                }, 3000);
+            }, 100);
         } else {
             filtroActivo.tipos = (seleccionados.map(input => ponerMayusculaPrimeraLetra(input.value)));
 
             aplicarfiltros();
             renderChips();
         }
-        console.log(filtroActivo);
 
     });
 
@@ -169,6 +202,7 @@ export function initFiltros(listaPoke, tiposPoke, tema) {
             filtrosActivos.appendChild(clon);
         }
         document.querySelector('.filtros').hidden = filtrosActivos.children.length === 0;
+        actualizarContador();
     }
 
     function limpiarFiltros() {

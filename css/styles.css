@@ -32,6 +32,12 @@ header {
     align-items: center;
 }
 
+img {
+    height: 64px;
+    width: auto;
+    object-fit: contain;
+}
+
 /*Botones y paneles*/
 
 .controls {

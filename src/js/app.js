@@ -1,4 +1,4 @@
-import { renderGrid, panelRegiones, panelTipos } from "./render.js";
+import { panelRegiones, panelTipos } from "./render.js";
 import { initFiltros } from "./filters.js";
 
 function detectarTema(){
@@ -17,7 +17,6 @@ async function iniciar(){
     let pokemons = await resPokemons.json();
     let tiposColours = await resTipos.json();
     let regiones = await resRegion.json();
-    renderGrid(pokemons, tiposColours, tema);
 
     panelRegiones(regiones);
 

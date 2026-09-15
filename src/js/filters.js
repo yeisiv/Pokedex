@@ -96,7 +96,11 @@ export function initFiltros(listaPoke, tiposPoke, tema) {
     });
 
     function aplicarfiltros() {
+        const hayFiltros = filtroActivo.busqueda.trim() != "" || filtroActivo.region != null || filtroActivo.tipos.length > 0;
         pokemonsFiltrados = listaPoke.filter(pokemon => {
+            if (!hayFiltros && pokemon.formaRegional){
+                return false;
+            }
             let pasaRegion = true;
             let pasaTipo = true;
             let pasaBusqueda = true;
@@ -184,4 +188,6 @@ export function initFiltros(listaPoke, tiposPoke, tema) {
         limpiarFiltros();
         botonesControl[0].focus();
     });
+
+    aplicarfiltros();
 }

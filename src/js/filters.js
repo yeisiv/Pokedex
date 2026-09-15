@@ -144,7 +144,7 @@ export function initFiltros(listaPoke, tiposPoke, tema) {
                     filtroActivo.tipos = filtroActivo.tipos.filter(t => t !== tipo);
                     aplicarfiltros();
                     renderChips();
-                    
+
                 });
                 filtrosActivos.appendChild(clon);
             });
@@ -166,4 +166,22 @@ export function initFiltros(listaPoke, tiposPoke, tema) {
         }
         document.querySelector('.filtros').hidden = filtrosActivos.children.length === 0;
     }
+
+    function limpiarFiltros() {
+        filtroActivo.busqueda = '';
+        filtroActivo.region = null;
+        filtroActivo.tipos = [];
+        regiones.querySelectorAll('input:checked').forEach(input => input.checked = false);
+        filtroTipos.querySelectorAll('input:checked').forEach(input => input.checked = false);
+        searchInput.value = '';
+        btnClean.hidden = true;
+        aplicarfiltros();
+        renderChips();
+    }
+
+    const botonBorrasFiltros = document.querySelector('.delete-filters');
+    botonBorrasFiltros.addEventListener('click', () => {
+        limpiarFiltros();
+        botonesControl[0].focus();
+    });
 }

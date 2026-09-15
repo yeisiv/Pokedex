@@ -51,6 +51,7 @@ export function initFiltros(listaPoke, tiposPoke, tema) {
             filtroActivo.busqueda = searchInput.value;
         } else {
             btnClean.hidden = true;
+            filtroActivo.busqueda = "";
         }
 
         aplicarfiltros();
@@ -61,6 +62,9 @@ export function initFiltros(listaPoke, tiposPoke, tema) {
         searchInput.value = '';
         btnClean.hidden = true;
         searchInput.focus();
+        filtroActivo.busqueda = '';
+        aplicarfiltros();
+        renderChips();
     });
 
     const filtroTipos = document.querySelector('.tipo-opciones');
@@ -150,7 +154,7 @@ export function initFiltros(listaPoke, tiposPoke, tema) {
             clon.querySelector(".chip-texto").textContent = "Búsqueda: " + filtroActivo.busqueda;
 
             const boton = clon.querySelector('button');
-            boton.setAttribute('aria-label', "Quitar filtro de búsqueda por: " + filtroActivo.region);
+            boton.setAttribute('aria-label', "Quitar filtro de búsqueda por: " + filtroActivo.busqueda);
             boton.addEventListener('click', () => {
                 searchInput.value = "";
                 filtroActivo.busqueda = "";
@@ -160,5 +164,6 @@ export function initFiltros(listaPoke, tiposPoke, tema) {
             });
             filtrosActivos.appendChild(clon);
         }
+        document.querySelector('.filtros').hidden = filtrosActivos.children.length === 0;
     }
 }

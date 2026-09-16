@@ -1,6 +1,6 @@
 const templateCarta = document.getElementById('card-template');
 
-function crearCarta(pokemon, tiposPoke, tema) {
+function crearCarta(pokemon, tiposPoke) {
     let cartaPokemon = templateCarta.content.cloneNode(true);
 
     let sprite = cartaPokemon.querySelector('.card__sprite');
@@ -20,10 +20,14 @@ function crearCarta(pokemon, tiposPoke, tema) {
         let tip = document.createElement('span');
         let colorTip = tiposPoke[tipo.toLowerCase()];
 
-        tip.classList.add('tip', 'tip-${tipo.toLowerCase()}');
+        tip.classList.add('tip', `tip-${tipo.toLowerCase()}`);
         tip.textContent = tipo;
-        tip.style.backgroundColor = tema === 'dark' ? colorTip.bgDark : colorTip.bgLight;
-        tip.style.color = tema === 'dark' ? colorTip.textDark : colorTip.textLight;
+
+        tip.style.setProperty('--chip-bg-light', colorTip.bgLight);
+        tip.style.setProperty('--chip-text-light', colorTip.textLight);
+        tip.style.setProperty('--chip-bg-dark', colorTip.bgDark);
+        tip.style.setProperty('--chip-text-dark', colorTip.textDark);
+
         tipos.appendChild(tip);
     });
 
@@ -46,7 +50,7 @@ function crearRegion(region) {
 
 const templateTipos = document.getElementById('tipo-option-template');
 
-function crearTipos(nombre, colores, tema) {
+function crearTipos(nombre, colores) {
 
     let opcionTipo = templateTipos.content.cloneNode(true);
 
@@ -57,11 +61,10 @@ function crearTipos(nombre, colores, tema) {
     input.value = nombre;
     nombreT.textContent = ponerMayusculaPrimeraLetra(nombre);
 
-    let bg = tema === 'dark' ? colores.bgDark : colores.bgLight;
-    let text = tema === 'dark' ? colores.textDark : colores.textLight;
-
-    label.style.setProperty('--chip-bg', bg);
-    label.style.setProperty('--chip-text', text);
+    label.style.setProperty('--chip-bg-light', colores.bgLight);
+    label.style.setProperty('--chip-text-light', colores.textLight);
+    label.style.setProperty('--chip-bg-dark', colores.bgDark);
+    label.style.setProperty('--chip-text-dark', colores.textDark);
 
     return opcionTipo;
 }
@@ -70,7 +73,7 @@ export function ponerMayusculaPrimeraLetra(palabra) {
     return palabra.charAt(0).toUpperCase() + palabra.slice(1);
 }
 
-export function renderGrid(listaPokemon, tiposPoke, tema) {
+export function renderGrid(listaPokemon, tiposPoke) {
     let grid = document.querySelector('.grid');
     let emptyState = document.querySelector('.empty-state');
     let hayResultados = listaPokemon.length > 0;
@@ -80,7 +83,7 @@ export function renderGrid(listaPokemon, tiposPoke, tema) {
     emptyState.hidden = hayResultados;
 
     listaPokemon.forEach(pokemon => {
-        const carta = crearCarta(pokemon, tiposPoke, tema);
+        const carta = crearCarta(pokemon, tiposPoke);
         grid.appendChild(carta);
     });
 }
@@ -93,10 +96,10 @@ export function panelRegiones(regiones) {
     })
 }
 
-export function panelTipos(tiposPoke, tema) {
+export function panelTipos(tiposPoke) {
     let panelTipo = document.querySelector('.tipo-opciones');
     Object.entries(tiposPoke).forEach(([nombreTipo, colores]) => {
-        const opcion = crearTipos(nombreTipo, colores, tema);
+        const opcion = crearTipos(nombreTipo, colores);
         panelTipo.appendChild(opcion);
     })
 }

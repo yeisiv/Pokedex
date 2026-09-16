@@ -25,7 +25,7 @@ function cerrarPaneles() {
     botonesControl.forEach(b => b.setAttribute('aria-expanded', 'false'));
 }
 
-export function initFiltros(listaPoke, tiposPoke, tema) {
+export function initFiltros(listaPoke, tiposPoke) {
     const filtroActivo = { region: null, tipos: [], busqueda: "" };
     let pokemonsFiltrados = [];
 
@@ -148,7 +148,7 @@ export function initFiltros(listaPoke, tiposPoke, tema) {
             }
             return pasaBusqueda && pasaRegion && pasaTipo;
         })
-        renderGrid(pokemonsFiltrados, tiposPoke, tema);
+        renderGrid(pokemonsFiltrados, tiposPoke);
     }
 
     function renderChips() {

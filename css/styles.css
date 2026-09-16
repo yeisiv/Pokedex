@@ -16,7 +16,7 @@
     margin: -1px;
 }
 
-[hidden]{
+[hidden] {
     display: none !important;
 }
 
@@ -87,7 +87,7 @@ header img {
 }
 
 @media (prefers-reduced-motion: no-preference) {
-    .toggle-tema{
+    .toggle-tema {
         transition: background-color 0.4s, border-color 0.4s, fill 0.45s;
     }
 
@@ -95,7 +95,9 @@ header img {
         transition: fill 0.45s, transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    .toggle-bola, .sol-rayos, .luna-mordida {
+    .toggle-bola,
+    .sol-rayos,
+    .luna-mordida {
         transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s;
     }
 }
@@ -128,7 +130,7 @@ header img {
     width: 100%;
 }
 
-.tipo-cabecera{
+.tipo-cabecera {
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
@@ -137,21 +139,44 @@ header img {
     line-height: 1;
 }
 
-.tipo-aviso{
+.tipo-aviso {
     min-height: calc(2 * 0.5em);
 }
 
 @keyframes sacudida {
-    0%, 100% { transform: translateX(0); }
-    20% { transform: translateX(-4px); }
-    40% { transform: translateX(4px); }
-    60% { transform: translateX(-3px); }
-    80% { transform: translateX(2px); }
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    20% {
+        transform: translateX(-4px);
+    }
+
+    40% {
+        transform: translateX(4px);
+    }
+
+    60% {
+        transform: translateX(-3px);
+    }
+
+    80% {
+        transform: translateX(2px);
+    }
 }
 
 @keyframes parpadeo {
-    0%, 100% { opacity: 1; }
-    50% {opacity: 0.5 }
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5
+    }
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -166,7 +191,7 @@ header img {
     }
 }
 
-.tipo-opciones{
+.tipo-opciones {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     gap: 0.5rem;
@@ -174,9 +199,9 @@ header img {
 }
 
 .tipo-option span {
+    background-color: light-dark(var(--chip-bg-light), var(--chip-bg-dark));
+    color: light-dark(var(--chip-text-light), var(--chip-text-dark));
     padding: 0.1rem;
-    background-color: var(--chip-bg);
-    color: var(--chip-text);
     border-radius: 0.2rem;
 }
 
@@ -205,9 +230,13 @@ header img {
 }
 
 .card__tipos span {
+
+    background-color: light-dark(var(--chip-bg-light), var(--chip-bg-dark));
+    color: light-dark(var(--chip-text-light), var(--chip-text-dark));
     padding: 0.2rem;
     border-radius: 4px;
 }
+
 
 @media (min-width: 480px) {
     .tipo-aviso {

@@ -2,13 +2,7 @@ import { panelRegiones, panelTipos } from "./render.js";
 import { initFiltros } from "./filters.js";
 import { initTema } from "./tema.js";
 
-function detectarTema(){
-    let prefiereDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    return prefiereDark ? 'dark' : 'light';
-}
-
 async function iniciar(){
-    let tema = detectarTema();
     initTema();
     let [resPokemons, resTipos, resRegion] = await Promise.all([
         fetch('./src/data/pokedex_completo.json'),
@@ -21,9 +15,9 @@ async function iniciar(){
 
     panelRegiones(regiones);
 
-    panelTipos(tiposColours, tema);
+    panelTipos(tiposColours);
 
-    initFiltros(pokemons, tiposColours, tema);
+    initFiltros(pokemons, tiposColours);
 }
 
 iniciar();

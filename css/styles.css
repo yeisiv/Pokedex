@@ -31,7 +31,7 @@ header {
     align-items: center;
 }
 
-img {
+header img {
     height: 64px;
     width: auto;
     object-fit: contain;

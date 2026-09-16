@@ -5,6 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>InfinityDex</title>
+    <script>
+        try {
+            const temaGuardado = localStorage.getItem('tema');
+            if (temaGuardado === 'dark' || temaGuardado === 'light') {
+                document.documentElement.classList.add(temaGuardado);
+            }
+        } catch (error) {
+            
+        }
+    </script>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 

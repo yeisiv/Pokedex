@@ -12,7 +12,7 @@
                 document.documentElement.classList.add(temaGuardado);
             }
         } catch (error) {
-            
+
         }
     </script>
     <link rel="stylesheet" href="css/styles.css">
@@ -22,6 +22,20 @@
     <header>
         <img src="assets/InfinityDex.png" alt="InfinityDex">
         <h1>InfinityDex</h1>
+        <button type="button" class="toggle-tema" aria-label="Modo oscuro" aria-pressed="false">
+            <span class="toggle-bola">
+                <svg viewbox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false">
+                    <mask id="mascara-luna">
+                        <rect x="-10" y="-10" width="44" height="44" fill="#fff" />
+                        <circle class="luna-mordida" cx="16" cy="8" r="7" fill="#000" />
+                    </mask>
+                    <g class="sol-rayos">
+                        <path d="M12 1.5v2M12 20.5v2M1.5 12h2M20.5 12h2M4.6 4.6l1.4 1.4M18 18l1.4 1.4M4.6 19.4L6 18M18 6l1.4-1.4" />
+                    </g>
+                    <circle class="sol-cuerpo" cx="12" cy="12" r="6" mask="url(#mascara-luna)" />
+                </svg>
+            </span>
+        </button>
     </header>
 
     <div class="controls">

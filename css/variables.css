@@ -1,27 +1,17 @@
 /*Colores para el fondo blanco*/
 :root {
-    --color-fondo-page: #F7F1E6;
-    --color-fondo-card: #FFFFFF;
-    --color-bordes: #E3D8C0;
-    --color-texto: #3B3221;
-    --color-acento: #C08A2E;
+    color-scheme: light dark;
+    --color-fondo-page: light-dark(#F7F1E6, #211E1A);
+    --color-fondo-card: light-dark(#FFFFFF, #2A2620);
+    --color-bordes: light-dark(#E3D8C0, #3A352C);
+    --color-texto: light-dark(#3B3221, #EDE9E0);
+    --color-acento: light-dark(#C08A2E, #D9A536);
 }
 
-/* Este media se activa cuando el sistema del ordenador esta en oscuro
-@media (prefers-color-scheme: dark) {
-    :root {
-        --color-fondo-page: #211E1A;
-        --color-fondo-card: #2A2620;
-        --color-bordes: #3A352C;
-        --color-texto: #EDE9E0;
-        --color-acento: #D9A536;
-    }
-} */
-
 html.dark {/*Lo que se activa con el toggle de sol y luna*/
-    --color-fondo-page: #211E1A;
-    --color-fondo-card: #2A2620;
-    --color-bordes: #3A352C;
-    --color-texto: #EDE9E0;
-    --color-acento: #D9A536;
+    color-scheme: dark;
+}
+
+html.light {
+    color-scheme: light;
 }

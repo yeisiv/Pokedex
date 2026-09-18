@@ -25,6 +25,17 @@ function cerrarPaneles() {
     botonesControl.forEach(b => b.setAttribute('aria-expanded', 'false'));
 }
 
+function debounce(funcion, espera = 300) {
+    let temporizador;
+    const envuelta = (...args) => {
+        clearTimeout(temporizador);
+        temporizador = setTimeout(() => funcion(...args), espera);
+    };
+
+    envuelta.cancelar = () => clearTimeout(temporizador);
+    return envuelta;
+}
+
 export function initFiltros(listaPoke, tiposPoke) {
     const filtroActivo = { region: null, tipos: [], busqueda: "" };
     let pokemonsFiltrados = [];
@@ -45,6 +56,10 @@ export function initFiltros(listaPoke, tiposPoke) {
     })
 
     const searchInput = document.getElementById('search-input');
+    const buscarConRetraso = debounce(() => {
+        aplicarfiltros();
+        renderChips();
+    }, 300);
     const btnClean = document.getElementById('btn-limpiar');
 
     searchInput.addEventListener('input', () => {
@@ -56,8 +71,7 @@ export function initFiltros(listaPoke, tiposPoke) {
             filtroActivo.busqueda = "";
         }
 
-        aplicarfiltros();
-        renderChips();
+        buscarConRetraso();
     });
 
     btnClean.addEventListener('click', () => {
@@ -130,6 +144,7 @@ export function initFiltros(listaPoke, tiposPoke) {
     const filtrosActivos = document.querySelector(".filtros-activos");
     function aplicarfiltros() {
         const hayFiltros = filtroActivo.busqueda.trim() != "" || filtroActivo.region != null || filtroActivo.tipos.length > 0;
+        const terminoBusqueda = filtroActivo.busqueda.trim().toLowerCase();
         pokemonsFiltrados = listaPoke.filter(pokemon => {
             if (!hayFiltros && pokemon.formaRegional) {
                 return false;
@@ -144,7 +159,7 @@ export function initFiltros(listaPoke, tiposPoke) {
                 pasaTipo = filtroActivo.tipos.every(tipo => pokemon.tipos.includes(tipo));
             }
             if (filtroActivo.busqueda.trim() != "") {
-                pasaBusqueda = pokemon.nombre.toLowerCase().startsWith(searchInput.value.toLowerCase()) || String(pokemon.numero).startsWith((searchInput.value));
+                pasaBusqueda = pokemon.nombre.toLowerCase().startsWith(terminoBusqueda) || String(pokemon.numero).startsWith((terminoBusqueda));
             }
             return pasaBusqueda && pasaRegion && pasaTipo;
         })
@@ -247,8 +262,9 @@ export function initFiltros(listaPoke, tiposPoke) {
     limpiarFiltros();
 
     window.addEventListener('pageshow', (event) => {
-        if(event.persisted) {
+        if (event.persisted) {
             limpiarFiltros();
         }
-    })
+    });
+
 }

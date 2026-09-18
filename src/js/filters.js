@@ -70,7 +70,7 @@ export function initFiltros(listaPoke, tiposPoke) {
     });
 
     const filtroTipos = document.querySelector('.tipo-opciones');
-    
+
     const contadorTipos = document.querySelector('.tipo-contador');
 
     const avisoTipos = document.querySelector('.tipo-aviso');
@@ -82,7 +82,7 @@ export function initFiltros(listaPoke, tiposPoke) {
     }
 
     function ocultarAvisoTipos() {
-        if (filtroActivo.tipos.length < MAX_TIPOS)  {
+        if (filtroActivo.tipos.length < MAX_TIPOS) {
             clearTimeout(temporizadorAviso);
             avisoTipos.textContent = '';
         }
@@ -90,7 +90,6 @@ export function initFiltros(listaPoke, tiposPoke) {
 
     filtroTipos.addEventListener('change', (event) => {
         const seleccionados = Array.from(filtroTipos.querySelectorAll('input:checked'));
-        console.log(seleccionados);
         if (seleccionados.length > MAX_TIPOS) {
             event.target.checked = false;
 
@@ -128,10 +127,11 @@ export function initFiltros(listaPoke, tiposPoke) {
         renderChips();
     });
 
+    const filtrosActivos = document.querySelector(".filtros-activos");
     function aplicarfiltros() {
         const hayFiltros = filtroActivo.busqueda.trim() != "" || filtroActivo.region != null || filtroActivo.tipos.length > 0;
         pokemonsFiltrados = listaPoke.filter(pokemon => {
-            if (!hayFiltros && pokemon.formaRegional){
+            if (!hayFiltros && pokemon.formaRegional) {
                 return false;
             }
             let pasaRegion = true;
@@ -152,7 +152,6 @@ export function initFiltros(listaPoke, tiposPoke) {
     }
 
     function renderChips() {
-        const filtrosActivos = document.querySelector(".filtros-activos");
         filtrosActivos.innerHTML = "";
         const template = document.getElementById("filtros-template");
         if (filtroActivo.region !== null) {
@@ -162,10 +161,12 @@ export function initFiltros(listaPoke, tiposPoke) {
             const boton = clon.querySelector('button');
             boton.setAttribute('aria-label', "Quitar filtro de región " + filtroActivo.region);
             boton.addEventListener('click', () => {
+                const indice = indiceDelChip(boton);
                 regiones.querySelector('input[value="' + filtroActivo.region.toLowerCase() + '"]').checked = false;
                 filtroActivo.region = null;
                 aplicarfiltros();
                 renderChips();
+                enfocarTrasBorrar(indice);
             });
             filtrosActivos.appendChild(clon);
         }
@@ -177,11 +178,12 @@ export function initFiltros(listaPoke, tiposPoke) {
                 const boton = clon.querySelector('button');
                 boton.setAttribute('aria-label', "Quitar filtro de tipo " + tipo);
                 boton.addEventListener('click', () => {
+                    const indice = indiceDelChip(boton);
                     filtroTipos.querySelector('input[value="' + tipo.toLowerCase() + '"]').checked = false;
                     filtroActivo.tipos = filtroActivo.tipos.filter(t => t !== tipo);
                     aplicarfiltros();
                     renderChips();
-
+                    enfocarTrasBorrar(indice);
                 });
                 filtrosActivos.appendChild(clon);
             });
@@ -193,17 +195,36 @@ export function initFiltros(listaPoke, tiposPoke) {
             const boton = clon.querySelector('button');
             boton.setAttribute('aria-label', "Quitar filtro de búsqueda por: " + filtroActivo.busqueda);
             boton.addEventListener('click', () => {
+                const indice = indiceDelChip(boton);
                 searchInput.value = "";
                 filtroActivo.busqueda = "";
                 btnClean.hidden = true;
                 aplicarfiltros();
                 renderChips();
+                enfocarTrasBorrar(indice);
             });
             filtrosActivos.appendChild(clon);
         }
         document.querySelector('.filtros').hidden = filtrosActivos.children.length === 0;
         actualizarContador();
     }
+
+    function enfocarTrasBorrar(indiceBorrado) {
+        const botones = filtrosActivos.querySelectorAll('.chip button');
+        const destino = Math.min(indiceBorrado, botones.length - 1);
+
+        if (destino >= 0) {
+            botones[destino].focus();
+        } else {
+            botonesControl[0].focus();
+        }
+    }
+
+    function indiceDelChip(boton) {
+        return Array.from(filtrosActivos.querySelectorAll('.chip button')).indexOf(boton);
+    }
+
+    filtrosActivos.addEventListener('click', (event) => event.stopPropagation());
 
     function limpiarFiltros() {
         filtroActivo.busqueda = '';
@@ -217,8 +238,8 @@ export function initFiltros(listaPoke, tiposPoke) {
         renderChips();
     }
 
-    const botonBorrasFiltros = document.querySelector('.delete-filters');
-    botonBorrasFiltros.addEventListener('click', () => {
+    const botonBorrarFiltros = document.querySelector('.delete-filters');
+    botonBorrarFiltros.addEventListener('click', () => {
         limpiarFiltros();
         botonesControl[0].focus();
     });

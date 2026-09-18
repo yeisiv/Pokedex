@@ -244,5 +244,11 @@ export function initFiltros(listaPoke, tiposPoke) {
         botonesControl[0].focus();
     });
 
-    aplicarfiltros();
+    limpiarFiltros();
+
+    window.addEventListener('pageshow', (event) => {
+        if(event.persisted) {
+            limpiarFiltros();
+        }
+    })
 }
